@@ -1,0 +1,21 @@
+<?php 
+session_start();
+?>
+<?php
+$cn=mysql_connect("localhost","root","");
+$email=$_POST['email'];
+$pass=$_POST['pass'];
+mysql_select_db("flood",$cn);
+$col="SELECT * FROM user WHERE email='$email' AND password='$pass'";
+$chk=mysql_query($col,$cn);
+//$result=mysql_fetch_assoc($chk);
+$count=mysql_num_rows($chk);
+if($count==1)
+{
+		header("location:admin.html");
+}
+else{
+	header("location:Login\login.html");
+}
+mysql_close($cn);
+?>
